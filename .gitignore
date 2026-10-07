@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env
+*.sqlite
+*.sqlite-journal
+.DS_Store
+backend/data/
+frontend/dist/
