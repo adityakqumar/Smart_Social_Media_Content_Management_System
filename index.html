@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f7f2" />
+    <title>Pulse Studio — Smart Social Media Content Management</title>
+    <meta name="description" content="AI-powered social media content management system with planning dashboard, calendar, content library, and analytics." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#overview" aria-label="Pulse Studio home"><span class="brand-dot"></span>pulse<span>studio</span></a>
+        <div class="workspace"><span class="workspace-mark">PS</span><div><strong>Pulse Studio</strong><small>Creative workspace</small></div><button class="subtle-button" aria-label="Switch workspace">...</button></div>
+        <nav class="nav" aria-label="Main navigation">
+          <button class="nav-link active" data-view="overview">Overview</button>
+          <button class="nav-link" data-view="calendar">Calendar</button>
+          <button class="nav-link" data-view="content">Content library</button>
+          <button class="nav-link" data-view="analytics">Analytics</button>
+          <button class="nav-link" data-view="team">Team</button>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="api-status"><span id="engine-status-dot"></span><span id="engine-status-text">Publishing engine online</span></div>
+          <div class="account"><div class="avatar">MC</div><div><strong>Maya Chen</strong><small>Administrator</small></div></div>
+        </div>
+      </aside>
+      <main class="main">
+        <header class="topbar">
+          <div class="eyebrow" id="topbar-date">Tuesday, 01 October</div>
+          <div class="top-actions">
+            <button class="icon-button" id="notifications" aria-label="Notifications"><span class="notification-count">3</span>Alerts</button>
+            <button class="outline-button" id="invite">Invite</button>
+            <button class="primary-button" id="open-composer">New post <span>+</span></button>
+          </div>
+        </header>
+        <section id="view-root"></section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop hidden" id="composer-modal" role="dialog" aria-modal="true" aria-labelledby="composer-title">
+      <form class="composer" id="composer-form">
+        <div class="modal-heading">
+          <div><span class="eyebrow">Content editor</span><h2 id="composer-title">Make a new post</h2></div>
+          <button type="button" class="close-button" id="close-composer" aria-label="Close">✕</button>
+        </div>
+        <div class="compose-grid">
+          <div class="compose-main">
+            <label>Campaign title<input id="post-title" required maxlength="140" placeholder="e.g. October drop: the edit" /></label>
+            <label>Caption<textarea id="post-content" required maxlength="2200" placeholder="Write your caption or make one with AI..."></textarea></label>
+            <div class="ai-row">
+              <input id="ai-topic" placeholder="What is this post about?" />
+              <select id="ai-tone">
+                <option value="warm">Warm</option>
+                <option value="bold">Bold</option>
+                <option value="witty">Witty</option>
+                <option value="calm">Calm</option>
+              </select>
+              <button type="button" class="ai-button" id="generate-caption">Generate caption</button>
+            </div>
+          </div>
+          <aside class="compose-aside">
+            <label>Platform<select id="post-platform"></select></label>
+            <label>Publish date<input id="post-date" type="datetime-local" required /></label>
+            <div class="image-preview">
+              <img src="./assets/lumen-campaign.png" alt="Lumen skincare campaign" />
+              <span>Campaign visual ready</span>
+            </div>
+          </aside>
+        </div>
+        <div class="modal-actions">
+          <p id="composer-message" aria-live="polite"></p>
+          <button type="button" class="outline-button" id="save-draft">Save draft</button>
+          <button type="submit" class="primary-button">Schedule post</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="toast hidden" id="toast" role="status"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
